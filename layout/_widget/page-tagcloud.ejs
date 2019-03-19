@@ -25,10 +25,15 @@
         background: #FAFAFA;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     }
+    .div-background {
+        opacity: 1;
+        background-color: rgba(255,251,251,0.7);
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    }
 </style>
 
-<div class=" material-tagscloud">
-    <div class="material-post mdl-grid">
+<div class=" material-tagscloud ">
+    <div class="material-post mdl-grid div-background">
         <%- tagcloud({
             min_font: 16,
             max_font: 35,
