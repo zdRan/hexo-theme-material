@@ -58,25 +58,13 @@
 	}
 </script>
 
-<!-- Import prettify js  -->
-<% if (theme.prettify.enable){ %>
+<!-- Import highlight.js -->
+<% if (theme.highlight.enable){ %>
     <% if ( (is_post()) ) { %>
-        <% if(theme.vendors.prettify) { %>
-            <%- jsLsload({path:(theme.vendors.prettify),key:'prettify_js'}) %>
-        <% } else if(theme.vendors.materialcdn) { %>
-            <%- jsLsload({path:(theme.vendors.materialcdn + '/js/prettify.min.js'),key:'prettify_js'}) %>
-        <% } else { %>
-            <%- jsLsload({path:('js/prettify.min.js'),key:'prettify_js'}) %>
-        <% } %>
+        <%- jsLsload({path:('js/highlight.pack.js'),key:'highlight_js'}) %>
     <% } %>
 <% } %>
-<% if (theme.hanabi.enable) { %>
-    <% if(theme.vendors.materialcdn) { %>
-        <%- jsLsload({path:(theme.vendors.materialcdn + '/js/hanabi-browser-bundle.js'),key:'hanabi'}) %>
-    <% } else { %>
-        <%- jsLsload({path:('js/hanabi-browser-bundle.js'),key:'hanabi'}) %>
-    <% } %>
-<% } %>
+
 
 <!-- Window Load -->
 <!-- add class for prettify -->
@@ -86,29 +74,13 @@
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
     });
 
-    <% if (theme.prettify.enable) { %>
+    <% if (theme.highlight.enable) { %>
         <% if ( (is_post()) ) { %>
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
+            <!-- 加载 highlight 代码高亮-->
+            hljs.initHighlightingOnLoad();
         <% } %>
     <% } %>
-    <% if (theme.hanabi.enable) { %>
-        <% if (!theme.hanabi.includeDefaultColors) { %>
-            HanabiBrowser.clearColors();
-        <% } %>
-        <% if (theme.hanabi.customColors) { %>
-            <% if (typeof theme.hanabi.customColors === 'string') { %>
-                HanabiBrowser.putColor('<%= theme.hanabi.customColors %>');
-            <% } else { %>
-                <% theme.hanabi.customColors.forEach(function(elements) { %>
-                    HanabiBrowser.putColor('<%= elements %>');
-                <% }); %>
-            <% } %>
-        <% } %>
-        HanabiBrowser.start('pre code',<%= theme.hanabi.line_number %>);
-    <% } %>
+
 </script>
 
 <!-- MathJax Load-->
